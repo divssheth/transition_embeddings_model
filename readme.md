@@ -33,11 +33,11 @@ Post successful execution, please create an indexer to update the target_index o
 
 **Limitations**:
 1. Code only works with API_KEY for now and does not support USER/SYSTEM assigned identity
-2. It is tested with AOAI models i.e. embeddings-002, embeddings-large
+2. It is tested with AOAI embedding models i.e. embeddings-002, embeddings-large
 3. Supports upto 100K records in the Search index
 
 **Future scope**:
-1. Test with open source embedding models hosted in Azure AI Foundry
+1. Test with open source embedding models hosted in Azure AI Foundry using Custom api
 2. Test Indexer functionality by pointing it to the new target_index
 
 ## Credits:
