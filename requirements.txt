@@ -1,0 +1,5 @@
+python-dotenv
+azure-search-documents
+azure-identity
+tqdm
+azure-ai-inference

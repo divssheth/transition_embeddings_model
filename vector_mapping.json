@@ -1,0 +1,6 @@
+
+[
+{"source": "chunk",
+"target": "text_vector",
+"vector_length": 3072}
+]
