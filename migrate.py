@@ -12,7 +12,6 @@ from azure.search.documents.indexes.models import (
 )
 import json
 from azure.ai.inference import EmbeddingsClient
-from azure.core.credentials import AzureKeyCredential
 
 load_dotenv("credentials.env") #, override=True) # take environment variables from .env.
 
@@ -27,13 +26,15 @@ target_index_name = os.environ["AZURE_TARGET_SEARCH_INDEX"]
 
 def initialize_embedding_model():
     embeddings_client = None
-    if len(os.environ["AZURE_AI_EMBEDDINGS_API_VERSION"]) > 0:
+    if "openai" in os.environ["AZURE_AI_EMBEDDINGS_ENDPOINT"]:
+        print("initializing embeddings client AOAI")
         embeddings_client = EmbeddingsClient(
             endpoint=os.environ["AZURE_AI_EMBEDDINGS_ENDPOINT"],
             credential=AzureKeyCredential(os.environ["AZURE_AI_EMBEDDINGS_KEY"]),
             api_version=os.environ["AZURE_AI_EMBEDDINGS_API_VERSION"]
         )
     else:
+        print("initializing embeddings client not AOAI")
         embeddings_client = EmbeddingsClient(
             endpoint=os.environ["AZURE_AI_EMBEDDINGS_ENDPOINT"],
             credential=AzureKeyCredential(os.environ["AZURE_AI_EMBEDDINGS_KEY"])
@@ -81,6 +82,8 @@ def add_api_key(vectors):
     for vectorizer in vectors["vectorizers"]:
         if vectorizer["kind"] == "azureOpenAI":
             vectorizer["azureOpenAIParameters"]["apiKey"] = os.environ["azureOpenAI_API_KEY"]
+        elif vectorizer["kind"] == "customWebApi":
+            vectorizer["customWebApiParameters"]["httpHeaders"]["x-functions-key"] = os.environ["customWebApi_API_KEY"]
         vectorizers.append(vectorizer)
     vectors["vectorizers"] = vectorizers
     return vectors

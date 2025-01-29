@@ -2,5 +2,5 @@
 [
 {"source": "chunk",
 "target": "text_vector",
-"vector_length": 3072}
+"vector_length": 1024}
 ]

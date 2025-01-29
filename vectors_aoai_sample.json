@@ -19,20 +19,16 @@
       }
     ],
     "vectorizers": [
-    {
+      {
         "name": "ulsocreportindex-azureOpenAi-text-vectorizer",
-        "kind": "customWebApi",
-        "customWebApiParameters": {
-            "uri": "https://vectorize-text.azurewebsites.net/api/embed_trigger",
-            "httpMethod": "POST",
-            "httpHeaders": {
-                "x-functions-key": "<redacted>"
-            },
-            "timeout": "PT60S",
-            "authResourceId": null,
-            "authIdentity": null
+        "kind": "azureOpenAI",
+        "azureOpenAIParameters": {
+          "resourceUri": "https://openaiswedendivye.openai.azure.com",
+          "deploymentId": "text-embedding-3-large",
+          "apiKey": "<redacted>",
+          "modelName": "text-embedding-3-large"
         }
-    }
-],
+      }
+    ],
     "compressions": []
   }
