@@ -1,3 +1,9 @@
 credentials.env
 /.venv
 /.vscode
+custom_skillset/.vscode/
+custom_skillset/.venv/
+custom_skillset/host.json
+custom_skillset/.funcignore
+custom_skillset/.gitignore
+custom_skillset/local.settings.json

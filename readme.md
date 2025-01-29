@@ -28,13 +28,14 @@ The vector mapping file is used to list all the fields and their corresponding v
 
 4. Run the code
 
+If you are using any vectorizer part from AOAI, you will need to deploy the custom skillset using azure function
+
 **Additional Steps**:
 Post successful execution, please create an indexer to update the target_index on a scheduled basis.
 
 **Limitations**:
 1. Code only works with API_KEY for now and does not support USER/SYSTEM assigned identity
-2. It is tested with AOAI embedding models i.e. embeddings-002, embeddings-large
-3. Supports upto 100K records in the Search index
+2. Need to test with index over 100K records
 
 **Future scope**:
 1. Test with open source embedding models hosted in Azure AI Foundry using Custom api
