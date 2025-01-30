@@ -20,26 +20,28 @@ The code base makes use of the Azure AI model inference SDK that allows you to s
 1. Create a `credentials.env` file and fill in the details. See `.credentials.env` file for example
 2. Create a `vector_mapping.json` file, sample provided. This file is used to map the source fields to vector fields.
 The vector mapping file is used to list all the fields and their corresponding vector fields along with the new vector size.
-`source` - name of the field whose vector representation is to be stored
-`target` - name of the field where the vector representation is stored
-`vector_length` - length of the vector representation of the field
+    `source` - name of the field whose vector representation is to be stored
+    `target` - name of the field where the vector representation is stored
+    `vector_length` - length of the vector representation of the field
 
 3. Create a `vectors.json` - this file is the updated vector profile for the target_index. Sample provided. Further details here - https://learn.microsoft.com/en-us/azure/search/vector-search-how-to-configure-vectorizer#define-a-vectorizer-and-vector-profile
 
 4. Run the code
 
-If you are using any vectorizer part from AOAI, you will need to deploy the custom skillset using azure function
+If you are using any vectorizer apart from AOAI, you will need to deploy the custom skillset using azure function.
 
 **Additional Steps**:
-Post successful execution, please create an indexer to update the target_index on a scheduled basis.
+Post successful execution do the following:
+1. Modify the skillset to use the new vectorizer and new index
+2. Re run indexer. If you've created a new skillset, make sure it is reflected in the indexer.
 
 **Limitations**:
 1. Code only works with API_KEY for now and does not support USER/SYSTEM assigned identity
 2. Need to test with index over 100K records
 
 **Future scope**:
-1. Test with open source embedding models hosted in Azure AI Foundry using Custom api
-2. Test Indexer functionality by pointing it to the new target_index
+1. ~~Test with open source embedding models hosted in Azure AI Foundry using Custom api~~ - **DONE, the custom skillset and embeddings function utilizes the Azure AI Foundry inference SDK. You can now seamlessly change embeddings models using the ENV variables without changing code.**
+2. ~~Test Indexer functionality by pointing it to the new target_index~~
 
 ## Credits:
 Backup and Restore example - https://github.com/Azure/azure-search-vector-samples/blob/main/demo-python/code/index-backup-restore/azure-search-backup-and-restore.ipynb
